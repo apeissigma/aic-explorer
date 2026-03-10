@@ -1,0 +1,117 @@
+/* Main container for the grid */
+main {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0px;
+    padding: 0px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Art card styling - image only */
+.art-card {
+    grid-column: span 1;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+
+
+.art-img {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Creates a 1:1 aspect ratio square */
+    position: relative;
+    overflow: hidden;
+}
+
+.art-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the square */
+}
+
+/* Hide all text content since we only want images */
+.art-info {
+    display: none;
+}
+
+/* Loading and error message styling */
+.loading, .error-message {
+    grid-column: span 10;
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.error-message {
+    color: #c53030;
+    background-color: #fff5f5;
+    border: 1px solid #fc8181;
+    border-radius: 8px;
+}
+
+.loading {
+    color: #4a5568;
+}
+
+/* No artworks message */
+main > div:not(.art-card) {
+    grid-column: span 10;
+    text-align: center;
+    padding: 40px;
+    color: #718096;
+    font-size: 16px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    main {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Optional: Add a tooltip to show title on hover */
+.art-card {
+    position: relative;
+}
+
+.art-card:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 20;
+    margin-bottom: 8px;
+    pointer-events: none;
+}
