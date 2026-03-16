@@ -1,5 +1,4 @@
 const BASE_URL = "https://api.artic.edu/api/v1/artworks";
-//const QUERY = "goose"; 
 const LIMIT = 100; 
 const FIELDS = [
     "id",
@@ -16,7 +15,8 @@ const FIELDS = [
 const FIELDSTRING = FIELDS.join(",");
 
 export const getArtworks = async () => {
-    const url = `${BASE_URL}?fields=${FIELDSTRING}&limit=${LIMIT}`
+    const url = `${BASE_URL}?page=1&fields=${FIELDSTRING}&limit=${LIMIT}`
+    console.log(url);
     try {
         const response = await fetch(url); 
         if (!response.ok) {
@@ -25,6 +25,21 @@ export const getArtworks = async () => {
         const data = await response.json();
         return data.data; 
 
+    } catch (err) {
+        console.error("Error fetching artwork:", err);
+        throw err;
+    }
+}
+
+export const searchArtworks = async (query) => {
+    const searchUrl = `${BASE_URL}/search/?q=${query}&fields=${FIELDSTRING}&limit=${LIMIT}`
+    try {
+        const response = await fetch(searchUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.data;
     } catch (err) {
         console.error("Error fetching artwork:", err);
         throw err;
