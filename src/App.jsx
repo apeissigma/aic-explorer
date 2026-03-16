@@ -2,7 +2,7 @@ import './css/App.css'
 import './css/ArtCard.css'
 import { useEffect, useState } from 'react'
 //import ArtCard from './components/ArtCard'
-import { getArtworksArray } from "./services/api";
+import { getArtworks } from "./services/api";
 
 
 
@@ -14,12 +14,22 @@ function ArtCard({artwork}) {
     : 'https://via.placeholder.com/200x200?text=No+Image';
 
   return (
-    <div className="art-card" data-title={artwork.title}>
+    <div className="art-card">
       <div className="art-img">
-        <img src={img_url} alt={artwork.title || 'Artwork'} />
+      <img src={img_url} alt={artwork.title}/>
+      </div>
+      <div className="art-info">
+          <p>{artwork.id}</p>
+          <p>{artwork.title}</p>
+          <p>Artist: {artwork.artist_title}</p>
+          <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+          <p>Color: {artwork.color ? `HSL(${artwork.color.h}%, ${artwork.color.l}%, ${artwork.color.s}%)` : 'No color data'}</p>
+          <p>Medium: {artwork.medium_display}</p>
+          <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
+          <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
       </div>
     </div>
-  )
+    )
 }
 
 function Main() {
@@ -30,7 +40,7 @@ function Main() {
     useEffect(() => {
       const loadArtworks = async () => {
         try {
-          const artworks = await getArtworksArray();
+          const artworks = await getArtworks();
           setArtworks(artworks);
         } catch (err) {
           console.log(err);
