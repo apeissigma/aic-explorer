@@ -1,0 +1,22 @@
+.artpage {
+    max-width: 800px; 
+    box-sizing: border-box;
+    margin: 40px auto; 
+    padding: 40px; 
+    border: solid #eee 1px; 
+}
+
+.art-img {
+    width: 100%; 
+}
+
+.art-img img {
+    display: block; 
+    margin: auto; 
+    max-height: 500px; 
+    border: solid #eee 1px; 
+}
+
+.art-info {
+    text-align: center; 
+}

@@ -46,6 +46,21 @@ export const searchArtworks = async (query) => {
     }
 }
 
+export const getId = async (query) => {
+    const searchUrl = `${BASE_URL}/${query}`
+    try {
+        const response = await fetch(searchUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.data;
+    } catch (err) {
+        console.error("Error fetching artwork:", err);
+        throw err;
+    }
+}
+
 //base_url + '?fields=' + fieldsstring + '/search?q=';' + query + '&limit=' + limit
 //`${BASE_URL}?fields=${FIELDSTRING}/search?q=${QUERY}&limit=${LIMIT}`
 

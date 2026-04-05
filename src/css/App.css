@@ -2,7 +2,6 @@ main {
     display: flex;
     flex-flow:wrap;
     justify-content: center; 
-    padding: 8px;
     max-width: 1400px;
     margin: 0 auto;
 }
