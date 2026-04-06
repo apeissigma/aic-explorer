@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { getId } from "../services/api";
+import BackButton from '../components/BackButton.jsx'
 import '../css/ArtPage.css'
-
 
 function ArtPage() {
     const { id } = useParams(); 
@@ -29,9 +29,14 @@ function ArtPage() {
     const img_url = img_id 
     ? `https://www.artic.edu/iiif/2/${img_id}/full/843,/0/default.jpg`
     : 'https://via.placeholder.com/200x200?text=No+Image';
+    
+    
 
   return (
     <div className="artpage">
+
+      <BackButton />
+
       <div className="art-img">
         <img src={img_url} alt={artwork.title}/>
       </div>
