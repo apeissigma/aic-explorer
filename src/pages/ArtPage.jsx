@@ -26,17 +26,14 @@ function ArtPage() {
     }, []);
 
     const img_id = artwork.image_id;
+    // !!! todo: add actual no-img image
     const img_url = img_id 
     ? `https://www.artic.edu/iiif/2/${img_id}/full/843,/0/default.jpg`
-    : 'https://via.placeholder.com/200x200?text=No+Image';
-    
-    
+    : 'https://ideaweb.com.tw/storage/2023/12/%E4%B8%8B%E8%BC%89.webp';
 
   return (
     <div className="artpage">
-
       <BackButton />
-
       <div className="art-img">
         <img src={img_url} alt={artwork.title}/>
       </div>
