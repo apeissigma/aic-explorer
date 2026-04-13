@@ -60,6 +60,8 @@ function Home() {
       </div>
 
       <main>
+        <h1>AIC Explorer</h1>
+        
         {error && <div className="error-message">{error}</div>}
 
         {loading ? (

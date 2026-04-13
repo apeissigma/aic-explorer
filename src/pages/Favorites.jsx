@@ -9,7 +9,7 @@ function Favorites() {
   if (favorites) {
     return (
       <main>
-        <h2>Favorites</h2>
+        <h1>Favorites</h1>
         <div className="artwork-grid">
           {favorites.map((artwork) => (
             <ArtCard artwork={artwork} key={artwork.id} />

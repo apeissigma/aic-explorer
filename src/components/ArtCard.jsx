@@ -34,13 +34,16 @@ function ArtCard({artwork}) {
               <p>{id}</p>
               <div className="color-block" style={{ backgroundColor: bgColor }}></div>
           
-              <p>{artwork.title}</p>
-              <p>Artist: {artwork.artist_title}</p>
-              <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+              <h2>{artwork.title}</h2>
+              <p>{artwork.artist_title ? artwork.artist_title : "n/a"}</p>
+              <p>{artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+              <span className="status">
+                <p>
+                  <span className={`view-status ${artwork.is_on_view ? "true" : "false"}`}>&#8226; </span>
+                  {artwork.is_on_view ? 'On view' : 'Currently off view'}
+                </p> 
+              </span>
 
-              <p>Medium: {artwork.medium_display}</p>
-              <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
-              <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
           </div>
           <button><Link to={`ArtPage/${id}`}>View Work</Link></button>
           <button className={`favorite-btn ${favorite ? "active" : "inactive"}`} onClick={onFavoriteClick}>&#9829;</button>
