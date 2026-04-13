@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 function ArtCard({artwork}) {
   const id = artwork.id; 
   const img_id = artwork.image_id;
@@ -6,6 +7,9 @@ function ArtCard({artwork}) {
   const img_url = img_id 
     ? `https://www.artic.edu/iiif/2/${img_id}/full/843,/0/default.jpg`
     : 'https://ideaweb.com.tw/storage/2023/12/%E4%B8%8B%E8%BC%89.webp';
+
+
+  var bgColor = artwork.color ? `HSL(${artwork.color.h}, ${artwork.color.l}%, ${artwork.color.s}%)` : '#d7d7d7';
 
   return (
     <div className="art-card">
@@ -16,10 +20,13 @@ function ArtCard({artwork}) {
           </div>
           <div className="card-info">
               <p>{id}</p>
+              <div className="color-block" style={{ backgroundColor: bgColor }}></div>
+
+              
               <p>{artwork.title}</p>
               <p>Artist: {artwork.artist_title}</p>
               <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
-              <p>Color: {artwork.color ? `HSL(${artwork.color.h}%, ${artwork.color.l}%, ${artwork.color.s}%)` : 'No color data'}</p>
+
               <p>Medium: {artwork.medium_display}</p>
               <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
               <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>

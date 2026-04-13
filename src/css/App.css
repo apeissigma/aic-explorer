@@ -1,33 +1,19 @@
 main {
-    display: flex;
-    flex-flow:wrap;
-    justify-content: center; 
-    max-width: 1400px;
-    margin: 0 auto;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.loading, .error-message {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 40px;
-    font-size: 18px;
+button {
+    background-color: #c3c3c3; 
+    border: 1px solid #cecece;
+    padding: 8px 12px;
+    margin: 4px; 
+}
+button:hover {
+    background-color: #b3b3b3; 
 }
 
-.error-message {
-    color: #c53030;
-    background-color: #fff5f5;
-    border: 1px solid #fc8181;
-    border-radius: 8px;
+.color-block {
+    width: 100%; 
+    height: 10px; 
 }
 
-.loading {
-    color: #4a5568;
-}
-
-main > div:not(.art-card) {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 40px;
-    color: #718096;
-    font-size: 16px;
-}

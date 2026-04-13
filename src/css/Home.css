@@ -1,0 +1,25 @@
+main {
+    display: flex;
+    flex-flow:wrap;
+    justify-content: center; 
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.loading, .error-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.error-message {
+    color: #c53030;
+    background-color: #fff5f5;
+    border: 1px solid #fc8181;
+    border-radius: 8px;
+}
+
+.loading {
+    color: #4a5568;
+}

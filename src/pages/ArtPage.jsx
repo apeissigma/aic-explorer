@@ -1,8 +1,8 @@
+import '../css/ArtPage.css'
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { getId } from "../services/api";
 import BackButton from '../components/BackButton.jsx'
-import '../css/ArtPage.css'
 
 function ArtPage() {
     const { id } = useParams(); 
@@ -31,23 +31,27 @@ function ArtPage() {
     ? `https://www.artic.edu/iiif/2/${img_id}/full/843,/0/default.jpg`
     : 'https://ideaweb.com.tw/storage/2023/12/%E4%B8%8B%E8%BC%89.webp';
 
+    var bgColor = artwork.color ? `HSL(${artwork.color.h}, ${artwork.color.l}%, ${artwork.color.s}%)` : '#d7d7d7';
+
   return (
-    <div className="artpage">
+    <main className="artpage">
       <BackButton />
-      <div className="art-img">
-        <img src={img_url} alt={artwork.title}/>
+      <div className="content">
+        <div className="art-img">
+          <img src={img_url} alt={artwork.title}/>
+          <div className="color-block" style={{ backgroundColor: bgColor }}></div>
+        </div>
+        <div className="art-info">
+            <p>{id}</p>
+            <h1>{artwork.title}</h1>
+            <p>Artist: {artwork.artist_title}</p>
+            <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+            <p>Medium: {artwork.medium_display}</p>
+            <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
+            <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
+        </div>
       </div>
-      <div className="art-info">
-          <p>{artwork.id}</p>
-          <h1>{artwork.title}</h1>
-          <p>Artist: {artwork.artist_title}</p>
-          <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
-          <p>Color: {artwork.color ? `HSL(${artwork.color.h}%, ${artwork.color.l}%, ${artwork.color.s}%)` : 'No color data'}</p>
-          <p>Medium: {artwork.medium_display}</p>
-          <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
-          <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
-      </div>
-    </div>
+    </main>
   )
 }
 

@@ -1,4 +1,5 @@
 import '../css/App.css'
+import '../css/Home.css'
 import '../css/ArtCard.css'
 import '../css/SearchBar.css'
 import ArtCard from '../components/ArtCard.jsx'
