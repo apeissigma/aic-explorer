@@ -46,3 +46,11 @@
     color: #1a1a1a;
     margin-bottom: 4px;
 }
+
+.favorite-btn.inactive {
+    color: #f5f5f5; 
+}
+
+.favorite-btn.active {
+    color: #8e000c;
+}

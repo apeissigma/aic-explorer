@@ -1,6 +1,5 @@
 import '../css/App.css'
 import '../css/Home.css'
-import '../css/ArtCard.css'
 import '../css/SearchBar.css'
 import ArtCard from '../components/ArtCard.jsx'
 import { useEffect, useState } from 'react'
@@ -64,15 +63,13 @@ function Home() {
         {error && <div className="error-message">{error}</div>}
 
         {loading ? (
-          <div className="loading">Loading...</div>
+        <div className="loading">Loading...</div>
         ) : (
-          artworks && artworks.length > 0 ? (
-            artworks.map((artwork) => (
+        <div className="artwork-grid">
+          {artworks.map((artwork) => (
               <ArtCard key={artwork.id} artwork={artwork} />
-            ))
-          ) : (
-            <div>No artworks found</div>
-          )
+            ))}
+        </div>
         )}
       </main>
     </>

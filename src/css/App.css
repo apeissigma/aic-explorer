@@ -1,4 +1,6 @@
 main {
+    max-width: 1400px;
+    margin: 0 auto;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -17,3 +19,8 @@ button:hover {
     height: 10px; 
 }
 
+.artwork-grid {
+    display: flex;
+    flex-flow:wrap;
+    justify-content: center; 
+}

@@ -1,11 +1,30 @@
+import '../css/App.css'
+import { useFavoriteContext } from "../contexts/FavoriteContext";
+import ArtCard from "../components/ArtCard"
 
-function Favorites()
-{
+
+function Favorites() {
+  const {favorites} = useFavoriteContext();
+
+  if (favorites) {
+    return (
+      <main>
+        <h2>Favorites</h2>
+        <div className="artwork-grid">
+          {favorites.map((artwork) => (
+            <ArtCard artwork={artwork} key={artwork.id} />
+          ))}
+        </div>
+      </main>
+      
+    );
+  }
+
   return (
-    <>
-      <h1>Favorites</h1>    
-    </>
-  )
+    <div className="favorites-empty">
+      <h2>No Favorites</h2>
+    </div>
+  );
 }
 
 export default Favorites; 
