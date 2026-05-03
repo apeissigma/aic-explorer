@@ -31,7 +31,6 @@ function ArtCard({artwork}) {
             <img src={img_url} alt={artwork.title}/>
           </div>
           <div className="card-info">
-              <p>{id}</p>
               <div className="color-block" style={{ backgroundColor: bgColor }}></div>
           
               <h2>{artwork.title}</h2>
