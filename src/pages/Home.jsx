@@ -60,11 +60,15 @@ function Home() {
       </div>
 
       <main>
-        <h1>AIC Explorer</h1>
+        <div className="hero">
+          <h1>Explore the Art Institute of Chicago's Collection</h1>
+        </div>
+        
         
         {error && <div className="error-message">{error}</div>}
 
         <div className="popular-works">
+          <h2>Selected Works</h2>
           {loading ? (
           <div className="loading">Loading...</div>
           ) : (

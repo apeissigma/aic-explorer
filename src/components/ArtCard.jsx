@@ -43,7 +43,7 @@ function ArtCard({artwork}) {
           </div>
 
           <div className="card-info">
-              <h2>{artwork.title}</h2>
+              <h3>{artwork.title}</h3>
               <p>Artist: {artwork.artist_title ? artwork.artist_title : "n/a"}</p>
               <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
               <div className="status">
