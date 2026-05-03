@@ -1,7 +1,7 @@
-import '../css/ArtPage.css'
+import '../css/Artwork.css'
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { getId } from "../services/api";
+import { getId } from "../services/api.js";
 import BackButton from '../components/BackButton.jsx'
 
 function ArtPage() {
@@ -49,6 +49,7 @@ function ArtPage() {
             <p>Medium: {artwork.medium_display}</p>
             <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
             <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
+            {artwork.description ? artwork.description : 'No description data'}
         </div>
       </div>
     </main>

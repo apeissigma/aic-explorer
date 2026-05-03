@@ -1,3 +1,31 @@
+h1 {
+    font-size: 2em;
+    line-height: 1.2; 
+    margin: 0; 
+}
+
+h2 {
+    font-size: 1.2em;
+    line-height: 1.3; 
+    font-weight: 500; 
+    margin: 0 0 12px 0; 
+}
+
+h3 {
+    font-size: 1em;
+    line-height: 1.2; 
+    font-weight: 400; 
+    margin: 0; 
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.4; 
+    font-weight: 400; 
+    margin: 0 0 8px 0; 
+}
+
+
 main {
     max-width: 1400px;
     margin: 0 auto;
@@ -14,13 +42,20 @@ button:hover {
     background-color: #b3b3b3; 
 }
 
-.color-block {
-    width: 100%; 
-    height: 10px; 
-}
-
 .artwork-grid {
     display: flex;
     flex-flow:wrap;
     justify-content: center; 
+    width: 100%; 
+}
+
+.icon-small {
+    width: 8px;
+    height: 8px;
+    padding: 2px; 
+}
+
+.icon-medium {
+    width: 20px;
+    height: 20px;
 }

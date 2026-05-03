@@ -3,7 +3,7 @@ import '../css/Home.css'
 import '../css/SearchBar.css'
 import ArtCard from '../components/ArtCard.jsx'
 import { useEffect, useState } from 'react'
-import { getArtworks, searchArtworks } from "../services/api";
+import { getArtworks, searchArtworks, getPopularArtworks } from "../services/api";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,7 +14,7 @@ function Home() {
   useEffect(() => {
     const loadArtworks = async () => {
       try {
-        const artworks = await getArtworks();
+        const artworks = await getPopularArtworks();
         setArtworks(artworks);
       } catch (err) {
         console.log(err);
@@ -64,15 +64,18 @@ function Home() {
         
         {error && <div className="error-message">{error}</div>}
 
-        {loading ? (
-        <div className="loading">Loading...</div>
-        ) : (
-        <div className="artwork-grid">
-          {artworks.map((artwork) => (
-              <ArtCard key={artwork.id} artwork={artwork} />
-            ))}
+        <div className="popular-works">
+          {loading ? (
+          <div className="loading">Loading...</div>
+          ) : (
+          <div className="artwork-grid">
+            {artworks.map((artwork) => (
+                <ArtCard key={artwork.id} artwork={artwork} />
+              ))}
+          </div>
+          )}
         </div>
-        )}
+        
       </main>
     </>
   )

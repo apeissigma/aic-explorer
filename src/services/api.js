@@ -5,14 +5,33 @@ const FIELDS = [
     "image_id",
     "title",
     "artist_title",
+    "artist_display",
     "date_start",
     "date_end",
     "medium_display",
+    "description",
     "color",
     "style_title",
     "is_on_view",
+    "is_boosted"
 ];
 const FIELDSTRING = FIELDS.join(",");
+
+const POPULAR_IDS = [
+    129884,
+    28560,
+    21023,
+    137125,
+    27992,
+    151363,
+    20684,
+    86385,
+    111628,
+    89503,
+    16568,
+    6565
+]
+const POPULAR_IDS_STRING = POPULAR_IDS.join(",");
 
 export const getArtworks = async () => {
     const url = `${BASE_URL}?page=1&fields=${FIELDSTRING}&limit=${LIMIT}`
@@ -61,8 +80,27 @@ export const getId = async (query) => {
     }
 }
 
+//https://api.artic.edu/api/v1/artworks?is_boosted=true&fields=id,image_id,title,artist_title,artist_display,date_start,date_end,medium_display,description,color,style_title,is_on_view&limit=100
+export const getPopularArtworks = async () => { 
+    const url = `${BASE_URL}?ids=${POPULAR_IDS_STRING}&fields=${FIELDSTRING}`
+    console.log(url);
+    try {
+        const response = await fetch(url); 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.data; 
+
+    } catch (err) {
+        console.error("Error fetching artwork:", err);
+        throw err;
+    }
+}
+
 //base_url + '?fields=' + fieldsstring + '/search?q=';' + query + '&limit=' + limit
 //`${BASE_URL}?fields=${FIELDSTRING}/search?q=${QUERY}&limit=${LIMIT}`
+//https://api.artic.edu/api/v1/artworks/129884
 
 /*
 export const getArtworksArray = async () => {

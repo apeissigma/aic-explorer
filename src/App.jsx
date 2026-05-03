@@ -1,7 +1,7 @@
 import "./css/App.css";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
-import ArtPage from "./pages/ArtPage";
+import Artwork from "./pages/Artwork";
 import Navbar from "./components/Navbar";
 import { FavoriteProvider } from "./contexts/FavoriteContext";
 import { Routes, Route } from "react-router-dom";
@@ -13,7 +13,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Favorites" element={<Favorites />} />
-            <Route path="/ArtPage/:id" element={<ArtPage />} /> 
+            <Route path="/Artwork/:id" element={<Artwork />} /> 
         </Routes>
     </FavoriteProvider>
   );
