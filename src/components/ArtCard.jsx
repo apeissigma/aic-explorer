@@ -1,5 +1,5 @@
 import "../css/ArtCard.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFavoriteContext } from "../contexts/FavoriteContext";
 
 function ArtCard({artwork}) {
@@ -27,7 +27,7 @@ function ArtCard({artwork}) {
 
   return (
     <div className="art-card">
-      <Link to={`Artwork/${id}`}>
+      <Link to={`/artwork/${id}`}>
 
           <div className="card-img" style={{ backgroundColor: bgColor }}>
             <img src={img_url} alt={artwork.title}/>

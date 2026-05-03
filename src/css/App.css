@@ -49,13 +49,20 @@ button:hover {
     width: 100%; 
 }
 
-.icon-small {
-    width: 8px;
-    height: 8px;
-    padding: 2px; 
+.loading, .error-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
 }
 
-.icon-medium {
-    width: 20px;
-    height: 20px;
+.error-message {
+    color: #c53030;
+    background-color: #fff5f5;
+    border: 1px solid #fc8181;
+    border-radius: 8px;
+}
+
+.loading {
+    color: #4a5568;
 }

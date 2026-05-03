@@ -1,16 +1,18 @@
 import '../css/App.css'
-import '../css/Home.css'
 import '../css/SearchBar.css'
 import ArtCard from '../components/ArtCard.jsx'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getArtworks, searchArtworks, getPopularArtworks } from "../services/api";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
   const [artworks, setArtworks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   
+  //load popular art with getPopularArtworks on page load
   useEffect(() => {
     const loadArtworks = async () => {
       try {
@@ -26,22 +28,11 @@ function Home() {
     loadArtworks();
   }, []);
 
-  const handleSearch = async (e) => {
+  //handle search submit, navigate to /search/query (Search.jsx)
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
-    if (loading) return;
-
-    setLoading(true);
-    try {
-        const searchResults = await searchArtworks(searchQuery);
-        setArtworks(searchResults);
-        setError(null);
-    } catch (err) {
-        console.log(err);
-        setError(err);
-    } finally {
-        setLoading(false);
-    }
+    if (!searchQuery.trim()) return; //don't search empty queries
+    navigate(`/search/${encodeURIComponent(searchQuery.trim())}`); 
   };
 
   return (

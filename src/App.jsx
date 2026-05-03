@@ -1,5 +1,6 @@
 import "./css/App.css";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 import Favorites from "./pages/Favorites";
 import Artwork from "./pages/Artwork";
 import Navbar from "./components/Navbar";
@@ -12,8 +13,9 @@ function App() {
         <Navbar />
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Favorites" element={<Favorites />} />
-            <Route path="/Artwork/:id" element={<Artwork />} /> 
+            <Route path="/search/:query" element={<Search />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/artwork/:id" element={<Artwork />} /> 
         </Routes>
     </FavoriteProvider>
   );

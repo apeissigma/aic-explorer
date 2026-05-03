@@ -51,7 +51,8 @@ export const getArtworks = async () => {
 }
 
 export const searchArtworks = async (query) => {
-    const searchUrl = `${BASE_URL}/search/?q=${query}&fields=${FIELDSTRING}&limit=${LIMIT}`
+    const encodedQuery = encodeURIComponent(query); //encode to handle spaces and special characters
+    const searchUrl = `${BASE_URL}/search/?q=${encodedQuery}&fields=${FIELDSTRING}&limit=${LIMIT}`;
     try {
         const response = await fetch(searchUrl);
         if (!response.ok) {

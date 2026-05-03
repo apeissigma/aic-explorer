@@ -1,10 +1,10 @@
 import '../css/Artwork.css'
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getId } from "../services/api.js";
-import BackButton from '../components/BackButton.jsx'
 
 function ArtPage() {
+    const navigate = useNavigate();
     const { id } = useParams(); 
     const [artwork, setArtwork] = useState([]);
     const [error, setError] = useState(null);
@@ -35,7 +35,7 @@ function ArtPage() {
 
   return (
     <main className="artpage">
-      <BackButton />
+      <button onClick={() => navigate(-1)}>&#8592; Back</button>
       <div className="content">
         <div className="art-img">
           <img src={img_url} alt={artwork.title}/>
