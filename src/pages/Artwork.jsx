@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { getId } from "../services/api.js";
 
-function ArtPage() {
+function Artwork() {
     const navigate = useNavigate();
     const { id } = useParams(); 
     const [artwork, setArtwork] = useState([]);
@@ -56,4 +56,4 @@ function ArtPage() {
   )
 }
 
-export default ArtPage;
+export default Artwork;

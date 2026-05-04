@@ -16,6 +16,7 @@ function ArtCard({artwork}) {
   }
 
   const id = artwork.id; 
+  const artist_id = artwork.artist_id; 
   const img_id = artwork.image_id;
   // !!! todo: add actual no-img image
   const img_url = img_id 
@@ -44,7 +45,7 @@ function ArtCard({artwork}) {
 
           <div className="card-info">
               <h3>{artwork.title}</h3>
-              <p>Artist: {artwork.artist_title ? artwork.artist_title : "n/a"}</p>
+              <Link to={`/artist/${artist_id}`}><p>Artist: {artwork.artist_title ? artwork.artist_title : "n/a"}</p></Link>
               <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
               <div className="status">
                 <span className={`view-status ${artwork.is_on_view ? "true" : "false"}`}>● </span>

@@ -4,6 +4,7 @@ const FIELDS = [
     "id",
     "image_id",
     "title",
+    "artist_id",
     "artist_title",
     "artist_display",
     "date_start",
@@ -28,6 +29,15 @@ const POPULAR_IDS = [
     6565
 ]
 const POPULAR_IDS_STRING = POPULAR_IDS.join(",");
+
+const ARTISTFIELDS = [
+    "id",
+    "title",
+    "birth_date",
+    "dead_date",
+    "description",
+]
+const ARTISTFIELDS_STRING = ARTISTFIELDS.join(",");
 
 export const getArtworks = async () => {
     const url = `${BASE_URL}?page=1&fields=${FIELDSTRING}&limit=${LIMIT}`
@@ -88,9 +98,24 @@ export const getPopularArtworks = async () => {
         }
         const data = await response.json();
         return data.data; 
-
     } catch (err) {
-        console.error("Error fetching artwork:", err);
+        console.error("Error fetching artwork: ", err);
+        throw err;
+    }
+}
+
+export const getArtist = async (query_id) => {
+    const url = `https://api.artic.edu/api/v1/artists/${query_id}?fields=${ARTISTFIELDS_STRING}`
+    console.log(url);
+    try {
+        const response = await fetch(url); 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.data; 
+    } catch (err) {
+        console.error("Error fetching artist data: ", err);
         throw err;
     }
 }
