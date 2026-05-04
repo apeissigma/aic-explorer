@@ -1,16 +1,17 @@
 import "../css/App.css"
-import '../css/Artwork.css'
+import '../css/Artist.css'
+import ArtCard from "../components/ArtCard.jsx"
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
-import { getArtist } from "../services/api.js";
+import { getArtist, getArtworkByArtist } from "../services/api.js";
 
 function Artist() {
     const navigate = useNavigate();
     const { artist_id } = useParams(); 
+
     const [artist, setArtist] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    
     useEffect(() => {
         const loadArtist = async () => {
         try {
@@ -26,6 +27,24 @@ function Artist() {
         loadArtist();
     }, []);
 
+    const [artistWork, setArtistWork] = useState(null);
+    const [artistWorkError, setArtistWorkError] = useState(null);
+    const [artistWorkLoading, setArtistWorkLoading] = useState(true);
+    useEffect(() => {
+        const loadArtistWork = async () => {
+        try {
+            const artwork = await getArtworkByArtist(artist_id);
+            setArtistWork(artwork);
+        } catch (err) {
+            console.log(err);
+            setArtistWorkError(`${err}: Failed to load...`);
+        } finally {
+            setArtistWorkLoading(false);
+        }
+        };
+        loadArtistWork();
+    }, []);
+
     /*
     const img_id = artist.image_id;
     // !!! todo: add actual no-img image
@@ -39,17 +58,85 @@ function Artist() {
     if (!artist) return null;
 
     return (
-    <main>
+    <main className="artist-page">
         <button onClick={() => navigate(-1)}>&#8592; Back</button>
         <div className="content">
             <div className="artist-info">
-                <p>{artist.id}</p>
-                <h2>{artist.title}</h2>
-                <p>{artist.birth_date} - {artist.death_date}</p>
-                <div dangerouslySetInnerHTML={{ __html: artist.description }} />
+                <div className="main-artist-info">
+                    <h1>{artist.title}</h1>
+                    <p>{artist.birth_date} - {artist.death_date}</p>
+                </div>
+
+                <div className="artist-description">
+                    <div dangerouslySetInnerHTML={{ __html: artist.description }} />
+                </div>
             </div>
         </div>
+
+        <div className="artist-work">
+            <h2>Artworks by {artist.title}</h2>
+            {artistWorkError && <div className="error-message">{artistWorkError}</div>}
+            {artistWorkLoading ? (
+                <div className="loading">Loading...</div>
+            ) : (
+                <div className="artwork-grid">
+                    {artistWork.map((work) => (
+                        <ArtCard key={work.id} artwork={work} />
+                    ))}
+                </div>
+            )}
+        </div>
     </main>
+
+    
 )}
 
 export default Artist;
+
+/*
+<main className="artpage">
+
+      <button onClick={() => navigate(-1)}>&#8592; Back</button>
+
+      <div className="content">
+
+        <div className="art-img">
+          <img src={img_url} alt={artwork.title}/>
+          <div className="color-block" style={{ backgroundColor: bgColor }}></div>
+        </div>
+
+        <div className="art-info">
+            <div className="main-info">
+              <h1>{artwork.title}</h1>
+              <Link to={artwork.artist_title ? `/artist/${artwork.artist_id}` : "#"}>
+                <p><a>{artwork.artist_display ? artwork.artist_display : "n/a"}</a></p>
+              </Link>
+              <p>{artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}–${artwork.date_end}`}</p>
+            </div>
+            
+            <div className="art-description" >
+              <h2>Artwork Description</h2>
+              <div dangerouslySetInnerHTML={{ __html: artwork.description }} />
+            </div>
+            
+
+            <div className="art-data">
+              <h2>Artwork Details</h2>
+              <p><strong>Id  </strong>{id}</p>
+              <p><strong>Title  </strong>{artwork.title}</p>
+              <Link to={artwork.artist_title ? `/artist/${artwork.artist_id}` : "#"}>
+                <p><strong>Artist  </strong><a>{artwork.artist_title ? artwork.artist_title : "n/a"}</a></p>
+              </Link>
+              <p><strong>Date  </strong> {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+              <p><strong>Place of Creatoin  </strong>{artwork.place_of_origin}</p>
+              <p><strong>Style  </strong> {artwork.style_title ? `${artwork.style_title}` : 'n/a'}</p>
+              <p><strong>Medium  </strong>{artwork.medium_display}</p>
+              <p><strong>Dimensions  </strong>{artwork.dimensions}</p>
+              <p><strong>Department  </strong>{artwork.department_title}</p>
+              <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
+            </div>
+
+        </div>
+
+      </div>
+*/

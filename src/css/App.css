@@ -31,10 +31,15 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 4em;
     line-height: 1.2; 
     font-weight: 500; 
     margin: 0 0 20px 0; 
+}
+
+.hero-text {
+    font-size: 5em;
+    line-height: 1.2; 
 }
 
 h2 {
@@ -58,8 +63,19 @@ p, a {
     font-size: 1em;
     line-height: 1.4; 
     font-weight: 400; 
-    margin: 0 0 8px 0; 
     color: var(--secondary-text);
+}
+
+p {
+    margin: 0 0 4px 0; 
+}
+
+a {
+    margin: 0; 
+}
+
+p a {
+    color: var(--link) !important; 
 }
 
 a {
@@ -68,10 +84,6 @@ a {
 
 a:hover {
     text-decoration: underline; 
-}
-
-p a {
-    color: var(--link) !important; 
 }
 
 main {

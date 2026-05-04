@@ -43,7 +43,6 @@ function Artwork() {
 
         <div className="art-img">
           <img src={img_url} alt={artwork.title}/>
-          <div className="color-block" style={{ backgroundColor: bgColor }}></div>
         </div>
 
         <div className="art-info">
@@ -68,7 +67,7 @@ function Artwork() {
               <Link to={artwork.artist_title ? `/artist/${artwork.artist_id}` : "#"}>
                 <p><strong>Artist  </strong><a>{artwork.artist_title ? artwork.artist_title : "n/a"}</a></p>
               </Link>
-              <p><strong>Date  </strong> {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}–${artwork.date_end}`}</p>
+              <p><strong>Date  </strong> {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
               <p><strong>Place of Creatoin  </strong>{artwork.place_of_origin}</p>
               <p><strong>Style  </strong> {artwork.style_title ? `${artwork.style_title}` : 'n/a'}</p>
               <p><strong>Medium  </strong>{artwork.medium_display}</p>

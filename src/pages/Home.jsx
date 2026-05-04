@@ -72,7 +72,7 @@ function Home() {
 
       <div className="hero">
         <div className="hero-content">
-          <h1>Explore the Art Institute of Chicago's Collection</h1>
+          <h1 className="hero-text">Explore the Art Institute of Chicago's Collection</h1>
         </div>
       </div>
 

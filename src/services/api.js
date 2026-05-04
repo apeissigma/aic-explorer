@@ -47,7 +47,6 @@ const DAILY_IDS = [
     4884, //francis bacon
     249012, //okeefe delaney
     24548, //shiva
-    
     20684 //paris street
 ]
 
@@ -110,7 +109,7 @@ export const getId = async (query) => {
 
 //https://api.artic.edu/api/v1/artworks?is_boosted=true&fields=id,image_id,title,artist_title,artist_display,date_start,date_end,medium_display,description,color,style_title,is_on_view&limit=100
 export const getPopularArtworks = async () => { 
-    const url = `${BASE_URL}?ids=${POPULAR_IDS_STRING}&fields=${FIELDSTRING}&limit=8`
+    const url = `${BASE_URL}?ids=${POPULAR_IDS_STRING}&fields=${FIELDSTRING}`
     console.log(url);
     try {
         const response = await fetch(url); 
@@ -138,6 +137,22 @@ export const getArtist = async (query_id) => {
     } catch (err) {
         console.error("Error fetching artist data: ", err);
         throw err;
+    }
+}
+
+export const getArtworkByArtist = async (artist_id) => {
+    const url = `${BASE_URL}/search?query[term][artist_id]=${artist_id}&fields=${FIELDSTRING}&limit=12`;
+    console.log(url);
+    try {
+        const response = await fetch(url); 
+        if (!response.ok) {
+            throw new Error();
+        }
+        const data = await response.json(); 
+        return data.data;
+    } catch (err) {
+        console.error("Error fetching artwork: ", err);
+        throw err; 
     }
 }
 
