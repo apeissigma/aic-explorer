@@ -1,35 +1,64 @@
+:root {
+    --header: "Noto Serif";
+    --body: "Noto Sans";
+}
+
+@font-face {
+    font-family: "Noto Serif";
+    src:
+        local("NotoSerif"), local("Noto Serif"),
+        url("NotoSerif.ttf");
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: 
+        local("NotoSans"), local("Noto Sans");
+}
+
 h1 {
-    font-size: 2em;
+    font-family: var(--header); 
+    font-size: 3em;
     line-height: 1.2; 
+    font-weight: 500; 
     margin: 0; 
 }
 
 h2 {
-    font-size: 1.3em;
+    font-family: var(--header); 
+    font-size: 1.5em;
     line-height: 1.3; 
     font-weight: 500; 
     margin: 0 0 12px 0; 
+    padding-bottom: 8px; 
+    border-bottom: 0.5px solid #888; 
 }
 
 h3 {
-    font-size: 1.05em;
+    font-family: var(--header); 
+    font-size: 1.1em;
     line-height: 1.3; 
     font-weight: 500; 
     margin: 0 0 12px 0; 
 }
 
 p {
+    font-family: "Noto Sans"; 
     font-size: 1em;
     line-height: 1.4; 
     font-weight: 400; 
     margin: 0 0 8px 0; 
 }
 
-
 main {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 40px; 
     font-family:'Arial', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    margin: 0px; 
 }
 
 button {
