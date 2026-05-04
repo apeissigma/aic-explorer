@@ -1,6 +1,6 @@
 import '../css/App.css'
-import '../css/SearchBar.css'
 import ArtCard from '../components/ArtCard.jsx'
+import SearchBar from '../components/SearchBar.jsx'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { searchArtworks } from "../services/api";
@@ -8,7 +8,6 @@ import { searchArtworks } from "../services/api";
 function Search() {
   const { query } = useParams();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState(query || "");
   const [artworks, setArtworks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -31,32 +30,17 @@ function Search() {
     loadResults();
   }, [query]); //rerun when url query changes
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return; //don't search empty queries
-    navigate(`/search/${encodeURIComponent(searchQuery)}`); //navigate to new url, triggers useEffect to load results
-  };
-
   return (
     <>
-      <div className="search-bar">
-        <form onSubmit={handleSearch} className="search-form">
-          <input
-            type="text"
-            placeholder="Search by title, artist, or keyword"
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button type="submit" className="search-button">Search</button>
-        </form>
-      </div>
-
-      <main>
-        <div className="hero">
-          <h1>Results for "{query}"</h1>
+      <div className="hero">
+        <div className="hero-content">
+          <h3>Collections search</h3>
+          <h1 className="hero-text">Results for "{query}"</h1>
+          <SearchBar />
         </div>
-        
+      </div>
+      
+      <main>
         {error && <div className="error-message">{error}</div>}
 
         {loading ? (

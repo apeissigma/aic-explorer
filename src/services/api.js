@@ -1,5 +1,5 @@
 const BASE_URL = "https://api.artic.edu/api/v1/artworks";
-const LIMIT = 100; 
+const LIMIT = 50; 
 const FIELDS = [
     "id",
     "image_id",

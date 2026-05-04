@@ -1,13 +1,12 @@
 import '../css/App.css'
-import '../css/SearchBar.css'
 import '../css/Home.css'
 import ArtCard from '../components/ArtCard.jsx'
+import SearchBar from '../components/SearchBar.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getArtworks, searchArtworks, getPopularArtworks, getId, getDailyWork } from "../services/api";
 
 function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   
   //load popular art with getPopularArtworks on page load
@@ -48,31 +47,13 @@ function Home() {
     loadDailyWork();
   }, []);
 
-  //handle search submit, navigate to /search/query (Search.jsx)
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return; //don't search empty queries
-    navigate(`/search/${encodeURIComponent(searchQuery.trim())}`); 
-  };
-
   return (
     <>
-      <div className="search-bar">
-        <form onSubmit={handleSearch} className="search-form">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="search-input"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button type="submit" className="search-button">Search</button>
-        </form>
-      </div>
-
       <div className="hero">
         <div className="hero-content">
-          <h1 className="hero-text">Explore the Art Institute of Chicago's Collection</h1>
+          <h1 className="hero-text">AIC Explorer</h1>
+          <p>Explore thousands of artworks in the museum's collection, from Ancient Greek sculptures to French Impressionist paintings, and more from around the world.</p>
+          <SearchBar />
         </div>
       </div>
 

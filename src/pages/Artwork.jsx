@@ -37,7 +37,10 @@ function Artwork() {
   return (
     <main className="artpage">
 
-      <button onClick={() => navigate(-1)}>&#8592; Back</button>
+      <button onClick={() => navigate(-1)} className="nav-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20"><rect width="40" height="40" fill="none"/><line x1="216" y1="128" x2="40" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><polyline points="112 56 40 128 112 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+        Back
+      </button>
 
       <div className="content">
 

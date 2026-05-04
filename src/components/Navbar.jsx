@@ -5,8 +5,8 @@ import "../css/Navbar.css"
 function Navbar() {
     return (
         <nav>
-            <button><NavLink to="/" >Home</NavLink></button>
-            <button><NavLink to="/Favorites" >Favorites</NavLink></button>
+            <NavLink to="/" className="nav-logo"><img src="/img/logo.png" alt="Art Intitute of Chicago logo" height="56" width="56"></img></NavLink>
+            <NavLink to="/Favorites" className="nav-btn">Favorites</NavLink>
         </nav>
     );
 }
