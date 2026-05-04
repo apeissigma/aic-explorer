@@ -1,3 +1,4 @@
+import "../css/App.css"
 import "../css/ArtCard.css"
 import { Link, useNavigate } from "react-router-dom";
 import { useFavoriteContext } from "../contexts/FavoriteContext";
@@ -29,34 +30,32 @@ function ArtCard({artwork}) {
   return (
     <div className="art-card">
       <Link to={`/artwork/${id}`}>
+        <div className="card-img" style={{ backgroundColor: bgColor }}>
+          <img src={img_url} alt={artwork.title}/>
+          <button onClick={onFavoriteClick}
+                  className={`favorite-btn ${favorite ? "active" : "inactive"}`}>
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 256 256">
+              <rect width="256" height="256" fill="none"/>
+              <path fill="currentColor" 
+                    d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"/>
+            </svg>
+          </button>
+        </div>
+      </Link>
 
-          <div className="card-img" style={{ backgroundColor: bgColor }}>
-            <img src={img_url} alt={artwork.title}/>
-            <button onClick={onFavoriteClick}
-                    className={`favorite-btn ${favorite ? "active" : "inactive"}`}>
-              <svg xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 256 256">
-                <rect width="256" height="256" fill="none"/>
-                <path fill="currentColor" 
-                      d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"/>
-              </svg>
-            </button>
+      <div className="card-info">
+          <Link to={`/artwork/${id}`}><h3>{artwork.title}</h3></Link>
+          <Link to={artwork.artist_title ? `/artist/${artist_id}` : "#"}>
+            <p>Artist: <a>{artwork.artist_title ? artwork.artist_title : "n/a"}</a></p>
+          </Link>
+          <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+          <div className="status">
+            <span className={`view-status ${artwork.is_on_view ? "true" : "false"}`}>● </span>
+            {artwork.is_on_view ? 'On view' : 'Currently off view'}
           </div>
-
-          <div className="card-info">
-              <h3>{artwork.title}</h3>
-              <Link to={`/artist/${artist_id}`}><p>Artist: {artwork.artist_title ? artwork.artist_title : "n/a"}</p></Link>
-              <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
-              <div className="status">
-                <span className={`view-status ${artwork.is_on_view ? "true" : "false"}`}>● </span>
-                {artwork.is_on_view ? 'On view' : 'Currently off view'}
-              </div>
-          </div>
-
-        </Link>
-
       </div>
-      
-    )
+    </div>
+  )
 }
 export default ArtCard

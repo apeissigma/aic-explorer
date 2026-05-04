@@ -1,3 +1,4 @@
+import "../css/App.css"
 import '../css/Artwork.css'
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";

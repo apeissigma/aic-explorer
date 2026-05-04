@@ -34,7 +34,7 @@ const ARTISTFIELDS = [
     "id",
     "title",
     "birth_date",
-    "dead_date",
+    "death_date",
     "description",
 ]
 const ARTISTFIELDS_STRING = ARTISTFIELDS.join(",");
