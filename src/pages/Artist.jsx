@@ -46,7 +46,7 @@ function Artist() {
                 <p>{artist.id}</p>
                 <h2>{artist.title}</h2>
                 <p>{artist.birth_date} - {artist.death_date}</p>
-                <p>{artist.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: artist.description }} />
             </div>
         </div>
     </main>

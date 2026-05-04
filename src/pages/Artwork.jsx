@@ -50,7 +50,7 @@ function Artwork() {
             <p>Medium: {artwork.medium_display}</p>
             <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
             <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
-            {artwork.description ? artwork.description : 'No description data'}
+            <div dangerouslySetInnerHTML={{ __html: artwork.description }} />
         </div>
       </div>
     </main>
