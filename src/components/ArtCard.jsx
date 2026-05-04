@@ -3,7 +3,7 @@ import "../css/ArtCard.css"
 import { Link, useNavigate } from "react-router-dom";
 import { useFavoriteContext } from "../contexts/FavoriteContext";
 
-function ArtCard({artwork}) {
+function ArtCard({artwork, className}) {
   const {isFavorite, addToFavorites, removeFromFavorites} = useFavoriteContext();
   const favorite = isFavorite(artwork.id); //favorite status
 
@@ -28,8 +28,9 @@ function ArtCard({artwork}) {
   var bgColor = artwork.color ? `HSL(${artwork.color.h}, ${artwork.color.l}%, ${artwork.color.s}%)` : '#d7d7d7';
 
   return (
-    <div className="art-card">
+    <div className={`art-card ${className || ''}`}>
       <Link to={`/artwork/${id}`}>
+
         <div className="card-img" style={{ backgroundColor: bgColor }}>
           <img src={img_url} alt={artwork.title}/>
           <button onClick={onFavoriteClick}
@@ -47,9 +48,9 @@ function ArtCard({artwork}) {
       <div className="card-info">
           <Link to={`/artwork/${id}`}><h3>{artwork.title}</h3></Link>
           <Link to={artwork.artist_title ? `/artist/${artist_id}` : "#"}>
-            <p>Artist: <a>{artwork.artist_title ? artwork.artist_title : "n/a"}</a></p>
+            <p><b>Artist</b>  <a>{artwork.artist_title ? artwork.artist_title : "n/a"}</a></p>
           </Link>
-          <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
+          <p><b>Date</b>  {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
           <div className="status">
             <span className={`view-status ${artwork.is_on_view ? "true" : "false"}`}>● </span>
             {artwork.is_on_view ? 'On view' : 'Currently off view'}

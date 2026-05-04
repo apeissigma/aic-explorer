@@ -4,35 +4,16 @@ import '../css/Home.css'
 import ArtCard from '../components/ArtCard.jsx'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getArtworks, searchArtworks, getPopularArtworks, getId } from "../services/api";
+import { getArtworks, searchArtworks, getPopularArtworks, getId, getDailyWork } from "../services/api";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  
+  //load popular art with getPopularArtworks on page load
   const [artworks, setArtworks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-  /*
-  //load daily work
-  useEffect(() => {
-    const loadSingleWork = async () => {
-      try {
-        const artwork = await getId(16568);
-        setArtworks(artwork);
-      } catch (err) {
-        console.log(err);
-        setError(`${err}: Failed to load...`);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadSingleWork(); 
-  })
-    */
-
-
-  //load popular art with getPopularArtworks on page load
   useEffect(() => {
     const loadArtworks = async () => {
       try {
@@ -46,6 +27,25 @@ function Home() {
       }
     };
     loadArtworks();
+  }, []);
+
+  //load daily work with getDailyWork
+  const [dailyWork, setDailyWork] = useState(null);
+  const [dailyError, setDailyError] = useState(null);
+  const [dailyLoading, setDailyLoading] = useState(true);
+  useEffect(() => {
+    const loadDailyWork = async () => {
+      try {
+        const artwork = await getDailyWork();
+        setDailyWork(artwork);
+      } catch (err) {
+        console.log(err);
+        setDailyError(`${err}: Failed to load...`);
+      } finally {
+        setDailyLoading(false);
+      }
+    };
+    loadDailyWork();
   }, []);
 
   //handle search submit, navigate to /search/query (Search.jsx)
@@ -79,20 +79,19 @@ function Home() {
       <main>
         {error && <div className="error-message">{error}</div>}
 
-        <div className="daily-work">
+        <section className="daily-work">
           <h2>Daily Work</h2>
-          {loading ? (
-          <div className="loading">Loading...</div>
+          {dailyError && <div className="error-message">{dailyError}</div>}
+          {dailyLoading ? (
+            <div className="loading">Loading...</div>
+          ) : dailyWork ? (
+            dailyWork && <ArtCard artwork={dailyWork} className="large"/>
           ) : (
-          <div className="artwork-grid">
-            {artworks.map((artwork) => (
-                <ArtCard key={artwork.id} artwork={artwork} />
-              ))}
-          </div>
+            <div className="error-message">No daily work available.</div>
           )}
-        </div>
+        </section>
 
-        <div className="popular-works">
+        <section className="popular-works">
           <h2>Selected Works</h2>
           {loading ? (
           <div className="loading">Loading...</div>
@@ -103,7 +102,7 @@ function Home() {
               ))}
           </div>
           )}
-        </div>
+        </section>
         
       </main>
     </>

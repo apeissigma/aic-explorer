@@ -1,6 +1,6 @@
 :root {
     --header: "Arial", 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    --body: "Noto Sans";
+    --body: "Arial", 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     --primary-text: #333;
     --secondary-text: #666;
     --background-color: #fff;
@@ -24,6 +24,7 @@ h1 {
     line-height: 1.2; 
     font-weight: 500; 
     margin: 0; 
+    color: var(--primary-text);
 }
 
 h2 {
@@ -69,6 +70,11 @@ main {
 body {
     margin: 0px; 
 }
+
+section {
+    margin-bottom: 40px; 
+}
+
 
 button {
     background-color: #c3c3c3; 

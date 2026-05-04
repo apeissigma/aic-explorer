@@ -12,7 +12,7 @@
     max-width: 1400px; 
 }
 
-h1 {
+.hero h1 {
     width: 80%; 
     color: white; 
 }
