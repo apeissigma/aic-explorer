@@ -125,8 +125,7 @@ section {
 .hero {
     box-sizing: border-box; 
     width: 100%;
-    height: 50vh; 
-    padding: 5% 40px; 
+    padding: 8% 40px; 
     background-color: var(--primary-color);
 }
 

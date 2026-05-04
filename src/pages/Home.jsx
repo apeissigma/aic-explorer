@@ -61,7 +61,7 @@ function Home() {
         {error && <div className="error-message">{error}</div>}
 
         <section className="daily-work">
-          <h2>Daily Work</h2>
+          <h2>Daily Featured Work</h2>
           {dailyError && <div className="error-message">{dailyError}</div>}
           {dailyLoading ? (
             <div className="loading">Loading...</div>
@@ -73,7 +73,7 @@ function Home() {
         </section>
 
         <section className="popular-works">
-          <h2>Selected Works</h2>
+          <h2>AIC Essentials</h2>
           {loading ? (
           <div className="loading">Loading...</div>
           ) : (
