@@ -9,9 +9,12 @@ const FIELDS = [
     "artist_display",
     "date_start",
     "date_end",
+    "place_of_origin",
     "medium_display",
     "description",
     "color",
+    "dimensions",
+    "department_title",
     "style_title",
     "is_on_view",
     "is_boosted"

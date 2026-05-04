@@ -1,7 +1,7 @@
 import "../css/App.css"
 import '../css/Artwork.css'
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { getId } from "../services/api.js";
 
 function Artwork() {
@@ -36,23 +36,51 @@ function Artwork() {
 
   return (
     <main className="artpage">
+
       <button onClick={() => navigate(-1)}>&#8592; Back</button>
+
       <div className="content">
+
         <div className="art-img">
           <img src={img_url} alt={artwork.title}/>
           <div className="color-block" style={{ backgroundColor: bgColor }}></div>
         </div>
+
         <div className="art-info">
-            <p>{id}</p>
-            <h1>{artwork.title}</h1>
-            <p>Artist: {artwork.artist_title}</p>
-            <p>Date: {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}-${artwork.date_end}`}</p>
-            <p>Medium: {artwork.medium_display}</p>
-            <p>Style: {artwork.style_title ? `${artwork.style_title}` : 'No style data'}</p>
-            <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
-            <div dangerouslySetInnerHTML={{ __html: artwork.description }} />
+            <div className="main-info">
+              <h1>{artwork.title}</h1>
+              <Link to={artwork.artist_title ? `/artist/${artwork.artist_id}` : "#"}>
+                <p><a>{artwork.artist_display ? artwork.artist_display : "n/a"}</a></p>
+              </Link>
+              <p>{artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}–${artwork.date_end}`}</p>
+            </div>
+            
+            <div className="art-description" >
+              <h2>Artwork Description</h2>
+              <div dangerouslySetInnerHTML={{ __html: artwork.description }} />
+            </div>
+            
+
+            <div className="art-data">
+              <h2>Artwork Details</h2>
+              <p><strong>Id  </strong>{id}</p>
+              <p><strong>Title  </strong>{artwork.title}</p>
+              <Link to={artwork.artist_title ? `/artist/${artwork.artist_id}` : "#"}>
+                <p><strong>Artist  </strong><a>{artwork.artist_title ? artwork.artist_title : "n/a"}</a></p>
+              </Link>
+              <p><strong>Date  </strong> {artwork.date_start===artwork.date_end ? `${artwork.date_start}` : `${artwork.date_start}–${artwork.date_end}`}</p>
+              <p><strong>Place of Creatoin  </strong>{artwork.place_of_origin}</p>
+              <p><strong>Style  </strong> {artwork.style_title ? `${artwork.style_title}` : 'n/a'}</p>
+              <p><strong>Medium  </strong>{artwork.medium_display}</p>
+              <p><strong>Dimensions  </strong>{artwork.dimensions}</p>
+              <p><strong>Department  </strong>{artwork.department_title}</p>
+              <p>{artwork.is_on_view ? 'On view' : 'Currently off view'}</p>
+            </div>
+
         </div>
+
       </div>
+
     </main>
   )
 }

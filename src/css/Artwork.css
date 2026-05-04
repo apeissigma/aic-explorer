@@ -1,9 +1,8 @@
 .artpage {
-    max-width: 1200px; 
+    max-width: 1400px; 
     box-sizing: border-box;
     margin: 40px auto; 
     padding: 40px; 
-    border: solid #eee 1px; 
 }
 
 .content {
@@ -12,16 +11,31 @@
 }
 
 .art-img {
-    width: 60%; 
+    position: sticky; 
+    max-width: 60%; 
+
 }
 
 .art-img img {
+    box-sizing: border-box;
     display: block; 
     margin: auto; 
     width: 100%; 
-    border: solid #eee 1px; 
+    padding: 0px 16px; 
 }
 
 .art-info {
-    padding: 24px; 
+    box-sizing: border-box; 
+    max-width: 40%; 
+    padding: 0 16px; 
+    border-left: 0.5px solid var(--secondary-text);
+}
+
+.art-data p {
+    padding-bottom: 8px; 
+    border-bottom: 0.5px solid #dadada; 
+}
+
+.art-info div {
+    margin-bottom: 32px;
 }
